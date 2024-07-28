@@ -2,7 +2,9 @@ name: "Deploy typedoc to Pages"
 
 on:
     push:
-        branches: ["main"]
+        branches: [main]
+    schedule:
+        - cron: 0 14 * * */3
 
 permissions:
     pages: write
@@ -18,7 +20,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
               with:
-                repository: valapi/node-valapi
+                  repository: valapi/node-valapi
             - name: Setup Pages
               uses: actions/configure-pages@v5
             - name: Setup Node
@@ -32,6 +34,7 @@ jobs:
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: './docs'
+                  path: ./docs
             - name: Deploy to GitHub Pages
+              id: deployment
               uses: actions/deploy-pages@v4
