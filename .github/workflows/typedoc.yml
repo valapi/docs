@@ -4,7 +4,8 @@ on:
     push:
         branches: [main]
     schedule:
-        - cron: 0 14 * * */3
+        #At 14:00 on Wednesday
+        - cron: 0 14 * * 3
 
 permissions:
     pages: write
